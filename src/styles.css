@@ -1,6 +1,18 @@
 @import "tailwindcss" source(none);
 @source "../src";
 @import "tw-animate-css";
+@import "@fontsource/space-grotesk/400.css";
+@import "@fontsource/space-grotesk/500.css";
+@import "@fontsource/space-grotesk/600.css";
+@import "@fontsource/space-grotesk/700.css";
+@import "@fontsource/dm-sans/400.css";
+@import "@fontsource/dm-sans/500.css";
+@import "@fontsource/dm-sans/600.css";
+
+@theme {
+  --font-sans: "DM Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+}
 
 @custom-variant dark (&:is(.dark *));
 
@@ -62,26 +74,34 @@
 }
 
 :root {
-  --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.129 0.042 264.695);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.129 0.042 264.695);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.129 0.042 264.695);
-  --primary: oklch(0.208 0.042 265.755);
-  --primary-foreground: oklch(0.984 0.003 247.858);
-  --secondary: oklch(0.968 0.007 247.896);
-  --secondary-foreground: oklch(0.208 0.042 265.755);
-  --muted: oklch(0.968 0.007 247.896);
-  --muted-foreground: oklch(0.554 0.046 257.417);
-  --accent: oklch(0.968 0.007 247.896);
-  --accent-foreground: oklch(0.208 0.042 265.755);
-  --destructive: oklch(0.577 0.245 27.325);
-  --destructive-foreground: oklch(0.984 0.003 247.858);
-  --border: oklch(0.929 0.013 255.508);
-  --input: oklch(0.929 0.013 255.508);
-  --ring: oklch(0.704 0.04 256.788);
+  --radius: 0.875rem;
+  /* Midnight Indigo palette */
+  --background: oklch(0.13 0.045 280);
+  --foreground: oklch(0.97 0.01 280);
+  --card: oklch(0.18 0.055 280);
+  --card-foreground: oklch(0.97 0.01 280);
+  --popover: oklch(0.18 0.055 280);
+  --popover-foreground: oklch(0.97 0.01 280);
+  --primary: oklch(0.62 0.22 278);
+  --primary-foreground: oklch(0.99 0.005 280);
+  --primary-glow: oklch(0.72 0.22 285);
+  --secondary: oklch(0.24 0.07 280);
+  --secondary-foreground: oklch(0.97 0.01 280);
+  --muted: oklch(0.22 0.05 280);
+  --muted-foreground: oklch(0.7 0.04 280);
+  --accent: oklch(0.62 0.22 278);
+  --accent-foreground: oklch(0.99 0.005 280);
+  --destructive: oklch(0.62 0.24 27);
+  --destructive-foreground: oklch(0.98 0.005 280);
+  --border: oklch(0.3 0.06 280 / 0.5);
+  --input: oklch(0.25 0.06 280);
+  --ring: oklch(0.62 0.22 278);
+  --gradient-hero: linear-gradient(135deg, oklch(0.13 0.045 280) 0%, oklch(0.22 0.09 278) 50%, oklch(0.32 0.16 280) 100%);
+  --gradient-primary: linear-gradient(135deg, oklch(0.55 0.22 278), oklch(0.7 0.22 285));
+  --gradient-card: linear-gradient(180deg, oklch(0.2 0.06 280 / 0.6), oklch(0.16 0.05 280 / 0.6));
+  --shadow-glow: 0 20px 60px -20px oklch(0.55 0.25 278 / 0.5);
+  --shadow-soft: 0 10px 30px -10px oklch(0.05 0.05 280 / 0.6);
+  --transition-smooth: cubic-bezier(0.16, 1, 0.3, 1);
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
@@ -137,8 +157,52 @@
     border-color: var(--color-border);
   }
 
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
+    font-family: var(--font-sans);
+    font-feature-settings: "ss01", "cv11";
+  }
+
+  h1, h2, h3, h4, h5 {
+    font-family: var(--font-display);
+    letter-spacing: -0.02em;
   }
 }
+
+@layer utilities {
+  .bg-gradient-hero { background-image: var(--gradient-hero); }
+  .bg-gradient-primary { background-image: var(--gradient-primary); }
+  .bg-gradient-card { background-image: var(--gradient-card); }
+  .shadow-glow { box-shadow: var(--shadow-glow); }
+  .shadow-soft { box-shadow: var(--shadow-soft); }
+  .text-gradient {
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .grid-bg {
+    background-image:
+      linear-gradient(oklch(0.62 0.22 278 / 0.08) 1px, transparent 1px),
+      linear-gradient(90deg, oklch(0.62 0.22 278 / 0.08) 1px, transparent 1px);
+    background-size: 48px 48px;
+  }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+.animate-float { animation: float 6s ease-in-out infinite; }
+
+@keyframes glow-pulse {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+.animate-glow { animation: glow-pulse 4s ease-in-out infinite; }
+

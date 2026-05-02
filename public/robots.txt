@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://kowiktori.lovable.app/sitemap.xml
