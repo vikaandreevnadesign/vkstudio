@@ -17,7 +17,7 @@ const portfolio = [
     img: portfolioYaEst,
   },
   {
-    title: "Marina Sadrieva — финансовый эксперт",
+    title: "Marina — финансовый эксперт",
     desc: "Премиальный лендинг для эксперта по недвижимости. Тёмная тема + золото.",
     tag: "Лендинг",
     url: "http://msfin.ru",
@@ -25,7 +25,7 @@ const portfolio = [
   },
   {
     title: "Новостройки 2026",
-    desc: "Гайд-лендинг по новостройкам с разделами сравнения и расчётов.",
+    desc: "Гайд-лендинг по новостройкам.",
     tag: "Гайд / Лендинг",
     url: "https://v0-realtor-landing-page-eight.vercel.app/",
     img: portfolioRealtor,
@@ -98,7 +98,7 @@ const services = [
 const pricing = [
   {
     name: "Визитка",
-    price: "3 900 ₽",
+    price: "4 900 ₽",
     tagline: "Одна страница о вас или услуге",
     features: [
       "1 страница, до 5 блоков",
