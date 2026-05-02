@@ -3,6 +3,41 @@ import { createFileRoute } from "@tanstack/react-router";
 import { track } from "@/lib/analytics";
 import { ContactForm } from "@/components/ContactForm";
 import heroBg from "@/assets/hero-bg.jpg";
+import portfolioYaEst from "@/assets/portfolio/ya-est.png";
+import portfolioMsfin from "@/assets/portfolio/msfin.png";
+import portfolioRealtor from "@/assets/portfolio/realtor.png";
+import portfolioQuiz from "@/assets/portfolio/kokurina-quiz.png";
+
+const portfolio = [
+  {
+    title: "Путь к себе",
+    desc: "Сайт-визитка энергокоуча и астролога. Атмосферный hero, мягкая подача.",
+    tag: "Визитка",
+    url: "http://ya-est.ru/",
+    img: portfolioYaEst,
+  },
+  {
+    title: "Marina Sadrieva — финансовый эксперт",
+    desc: "Премиальный лендинг для эксперта по недвижимости. Тёмная тема + золото.",
+    tag: "Лендинг",
+    url: "http://msfin.ru",
+    img: portfolioMsfin,
+  },
+  {
+    title: "Новостройки 2026",
+    desc: "Гайд-лендинг по новостройкам с разделами сравнения и расчётов.",
+    tag: "Гайд / Лендинг",
+    url: "https://v0-realtor-landing-page-eight.vercel.app/",
+    img: portfolioRealtor,
+  },
+  {
+    title: "Тест по недвижимости",
+    desc: "Интерактивный квиз для прогрева аудитории и сбора лидов.",
+    tag: "Квиз",
+    url: "https://v0-kokurina.vercel.app/",
+    img: portfolioQuiz,
+  },
+];
 
 export const Route = createFileRoute("/")({
   head: () => ({
