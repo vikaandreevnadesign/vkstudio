@@ -249,6 +249,69 @@ function Index() {
         </div>
       </section>
 
+      {/* PRICING */}
+      <section id="pricing" className="border-y border-border/50 bg-card/20">
+        <div className="mx-auto max-w-6xl px-5 py-20 md:py-28">
+          <div className="mb-12 max-w-2xl">
+            <p className="mb-3 text-xs font-medium tracking-widest text-primary uppercase">
+              Цены
+            </p>
+            <h2 className="font-display text-3xl font-bold tracking-tight md:text-5xl">
+              Прозрачные тарифы
+            </h2>
+            <p className="mt-4 text-muted-foreground">
+              Цены — по нижней границе рынка РФ. Без скрытых платежей: дизайн,
+              вёрстка, размещение и базовое SEO уже включены.
+            </p>
+          </div>
+          <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-4">
+            {pricing.map((p) => (
+              <article
+                key={p.name}
+                className={`relative flex flex-col rounded-2xl border p-6 backdrop-blur transition ${
+                  p.highlight
+                    ? "border-primary/60 bg-gradient-card shadow-glow"
+                    : "border-border bg-card/40 hover:border-primary/40"
+                }`}
+              >
+                {p.highlight && p.badge && (
+                  <span className="bg-gradient-primary absolute -top-3 left-6 rounded-full px-3 py-1 text-[10px] font-bold tracking-widest text-primary-foreground uppercase">
+                    {p.badge}
+                  </span>
+                )}
+                <h3 className="text-lg font-semibold">{p.name}</h3>
+                <p className="mt-1 text-sm text-muted-foreground">{p.tagline}</p>
+                <div className="font-display mt-5 text-3xl font-bold">
+                  <span className="text-gradient">{p.price}</span>
+                </div>
+                <ul className="mt-5 flex-1 space-y-2 text-sm text-muted-foreground">
+                  {p.features.map((f) => (
+                    <li key={f} className="flex gap-2">
+                      <span className="text-primary">✓</span>
+                      <span>{f}</span>
+                    </li>
+                  ))}
+                </ul>
+                <a
+                  href="#contact"
+                  onClick={() => track("cta_click", `pricing_${p.name}`)}
+                  className={`mt-6 rounded-full px-5 py-2.5 text-center text-sm font-semibold transition ${
+                    p.highlight
+                      ? "bg-gradient-primary text-primary-foreground hover:opacity-95"
+                      : "border border-border bg-card/60 text-foreground hover:bg-card"
+                  }`}
+                >
+                  {p.cta}
+                </a>
+              </article>
+            ))}
+          </div>
+          <p className="mt-8 text-center text-xs text-muted-foreground">
+            Финальная стоимость зависит от объёма. Сложные проекты — по договорённости.
+          </p>
+        </div>
+      </section>
+
       {/* PROCESS */}
       <section id="process" className="border-y border-border/50 bg-card/30">
         <div className="mx-auto max-w-6xl px-5 py-20 md:py-28">
