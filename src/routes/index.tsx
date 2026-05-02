@@ -3,6 +3,41 @@ import { createFileRoute } from "@tanstack/react-router";
 import { track } from "@/lib/analytics";
 import { ContactForm } from "@/components/ContactForm";
 import heroBg from "@/assets/hero-bg.jpg";
+import portfolioYaEst from "@/assets/portfolio/ya-est.png";
+import portfolioMsfin from "@/assets/portfolio/msfin.png";
+import portfolioRealtor from "@/assets/portfolio/realtor.png";
+import portfolioQuiz from "@/assets/portfolio/kokurina-quiz.png";
+
+const portfolio = [
+  {
+    title: "Путь к себе",
+    desc: "Сайт-визитка энергокоуча и астролога. Атмосферный hero, мягкая подача.",
+    tag: "Визитка",
+    url: "http://ya-est.ru/",
+    img: portfolioYaEst,
+  },
+  {
+    title: "Marina Sadrieva — финансовый эксперт",
+    desc: "Премиальный лендинг для эксперта по недвижимости. Тёмная тема + золото.",
+    tag: "Лендинг",
+    url: "http://msfin.ru",
+    img: portfolioMsfin,
+  },
+  {
+    title: "Новостройки 2026",
+    desc: "Гайд-лендинг по новостройкам с разделами сравнения и расчётов.",
+    tag: "Гайд / Лендинг",
+    url: "https://v0-realtor-landing-page-eight.vercel.app/",
+    img: portfolioRealtor,
+  },
+  {
+    title: "Тест по недвижимости",
+    desc: "Интерактивный квиз для прогрева аудитории и сбора лидов.",
+    tag: "Квиз",
+    url: "https://v0-kokurina.vercel.app/",
+    img: portfolioQuiz,
+  },
+];
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -144,6 +179,7 @@ function Index() {
           <div className="hidden items-center gap-7 text-sm text-muted-foreground md:flex">
             <a href="#services" className="transition hover:text-foreground">Услуги</a>
             <a href="#pricing" className="transition hover:text-foreground">Цены</a>
+            <a href="#portfolio" className="transition hover:text-foreground">Работы</a>
             <a href="#process" className="transition hover:text-foreground">Процесс</a>
             <a href="#contact" className="transition hover:text-foreground">Контакты</a>
           </div>
@@ -309,6 +345,57 @@ function Index() {
           <p className="mt-8 text-center text-xs text-muted-foreground">
             Финальная стоимость зависит от объёма. Сложные проекты — по договорённости.
           </p>
+        </div>
+      </section>
+
+      {/* PORTFOLIO */}
+      <section id="portfolio" className="mx-auto max-w-6xl px-5 py-20 md:py-28">
+        <div className="mb-12 max-w-2xl">
+          <p className="mb-3 text-xs font-medium tracking-widest text-primary uppercase">
+            Работы
+          </p>
+          <h2 className="font-display text-3xl font-bold tracking-tight md:text-5xl">
+            Примеры проектов
+          </h2>
+          <p className="mt-4 text-muted-foreground">
+            Несколько живых сайтов — от визитки до интерактивного квиза.
+          </p>
+        </div>
+        <div className="grid gap-6 md:grid-cols-2">
+          {portfolio.map((p) => (
+            <a
+              key={p.url}
+              href={p.url}
+              target="_blank"
+              rel="noopener"
+              onClick={() => track("contact_click", `portfolio_${p.title}`)}
+              className="group bg-gradient-card overflow-hidden rounded-2xl border border-border backdrop-blur transition hover:border-primary/50 hover:shadow-glow"
+            >
+              <div className="relative aspect-[16/10] overflow-hidden bg-card/40">
+                <img
+                  src={p.img}
+                  alt={`Превью сайта ${p.title}`}
+                  loading="lazy"
+                  className="h-full w-full object-cover object-top transition duration-500 group-hover:scale-105"
+                />
+              </div>
+              <div className="p-5">
+                <div className="mb-2 flex items-center gap-2">
+                  <span className="rounded-full border border-primary/30 bg-primary/10 px-2.5 py-0.5 text-[10px] font-medium tracking-widest text-primary uppercase">
+                    {p.tag}
+                  </span>
+                  <span className="truncate text-xs text-muted-foreground">
+                    {p.url.replace(/^https?:\/\//, "").replace(/\/$/, "")}
+                  </span>
+                </div>
+                <h3 className="text-lg font-semibold">{p.title}</h3>
+                <p className="mt-1 text-sm text-muted-foreground">{p.desc}</p>
+                <span className="mt-3 inline-flex items-center gap-1 text-sm font-medium text-primary">
+                  Открыть сайт →
+                </span>
+              </div>
+            </a>
+          ))}
         </div>
       </section>
 
