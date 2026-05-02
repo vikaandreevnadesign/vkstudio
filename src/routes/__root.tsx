@@ -1,6 +1,7 @@
 import { Outlet, Link, createRootRoute, HeadContent, Scripts } from "@tanstack/react-router";
 
 import appCss from "../styles.css?url";
+import { AnalyticsScripts } from "@/components/AnalyticsScripts";
 
 const SITE_URL = "https://kowiktori.lovable.app";
 const SITE_NAME = "Виктория Кокурина — Создание сайтов";
@@ -111,5 +112,10 @@ function RootShell({ children }: { children: React.ReactNode }) {
 }
 
 function RootComponent() {
-  return <Outlet />;
+  return (
+    <>
+      <AnalyticsScripts />
+      <Outlet />
+    </>
+  );
 }
