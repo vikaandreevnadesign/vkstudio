@@ -179,6 +179,7 @@ function Index() {
           <div className="hidden items-center gap-7 text-sm text-muted-foreground md:flex">
             <a href="#services" className="transition hover:text-foreground">Услуги</a>
             <a href="#pricing" className="transition hover:text-foreground">Цены</a>
+            <a href="#portfolio" className="transition hover:text-foreground">Работы</a>
             <a href="#process" className="transition hover:text-foreground">Процесс</a>
             <a href="#contact" className="transition hover:text-foreground">Контакты</a>
           </div>
